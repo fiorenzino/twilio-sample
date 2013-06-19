@@ -157,7 +157,23 @@ The operation of sniff the xml producted is mandatary when you want observe/debu
 In the same controller we inject a TwilioRequestMap: that map collect all parameters from twilio:
 alternatively you can inject the parameters you need:
 for example 
-@CallSid or @From (for the complete list go to http://www.twiliofaces.org/howto.html#injectParameters
+- @AccountSid, 
+- @ApiVersion, 
+- @ApplicationSid, 
+- @CallSid, 
+- @CallStatus, 
+- @Caller, 
+- @Direction, 
+- @From, 
+- @PhoneNumber 
+
+For a complete list go to http://www.twiliofaces.org/howto.html#injectParameters.
+In all cases you must remeber 2 things:
+- if you @inject a parameter in a controller with life-cycle more long than Request, the valorization of that became 
+at creation of component
+- if you use a component with life more longer than RequestScope and you want always the fresh value injected you can use
+Instance<String> xxx (where xx is from or direction or what do you need).
+
 ----
 
 /*
@@ -211,8 +227,12 @@ public class LogController
 
 ----
 
-In this controller we also want trace all parameters that twilio send tou our app. In Twiliofaces we can inject a TwilioRequestMap, for example we will see:
-AccountSid, ApiVersion, ApplicationSid, CallSid, CallStatus, Caller, Direction, From, PhoneNumber 
+The most important component in the Quiz app is the QuizController wich born after tha twilio call our server and die 
+after receiving a notification. We use twilioScope to follows the call in all steps of quiz:
+- initial identification of client
+- ask a question
+- gather a reponse with numbers
+- decide if the user wins, playing the recorded message on the twilio server and reading our sentence.
 
 ----
 
