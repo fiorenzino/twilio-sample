@@ -96,7 +96,7 @@ public class QuizController implements Serializable
 
    public String getQuestion()
    {
-      return "What's the name of Italy capital? Click 1 for Rome, click 2 for Milan, click 3 for Venice.";
+      return "What's the name of the italian capital? Click 1 for Rome, click 2 for Milan, click 3 for Venice.";
 
    }
 
@@ -106,7 +106,7 @@ public class QuizController implements Serializable
       {
          return "Awesome! your answer is correct";
       }
-      return "Nooo! You must to go in Italy!! Rome is the Italy's capital!";
+      return "Nooo! You must to go in Italy!! Rome is the italian capital!";
 
    }
 
