@@ -88,8 +88,17 @@ Below a minimal pom.xml:
 </project>
 
 ----
+Declaring the javaee-api dependency you can use CDI @Inject and all CDI scope declarations like @RequestScope.
+In twiliofaces we have a CDI extension to use @TwilioScope, a custom scope build for trace a complete twilio interaction
+identified with a CallSid parameter. Also you have for free a lot of methods annotated with @Produces to simplify the
+injection of all request parameters.
 
-a minimal web.xml:
+Below a minimal web.xml, where you should declare you twilio secret parameters:
+
+. TWILIO SID
+. TWILIO TOKEN
+. TWILIO NUMBER
+. TWILIO APPLICATION SID
 
 ----
 
@@ -120,10 +129,12 @@ a minimal web.xml:
 
 </web-app>
 
-
 ----
+In case of you use twilio api only to receive phone calls, you can't declare that parameters. But if you want start a call
+from your app, you must have that. In this tutorial we don't use this capability, ut it's important knows where store 
+that reserved informations. 
 
-a beans.xml (to start CDI container):
+Below an almost empty beans.xml (to start CDI container):
 
 ----
 
@@ -138,10 +149,15 @@ a beans.xml (to start CDI container):
 ----
 
 
-== some cdi controller to play with our quiz
+== CDI controllers to play with our Quiz!
 
-A simple LogController to to @observes the xml producted when twilio forward the request on our app:
-
+We use a simple class "LogController"  where receives all events lied to the twiml production:
+using @observes TwimlEvent, you can read/log the xml served to twilio to guide the flow of call.
+The operation of sniff the xml producted is mandatary when you want observe/debug the twilio behavior.
+In the same controller we inject a TwilioRequestMap: that map collect all parameters from twilio:
+alternatively you can inject the parameters you need:
+for example 
+@CallSid or @From (for the complete list go to http://www.twiliofaces.org/howto.html#injectParameters
 ----
 
 /*
