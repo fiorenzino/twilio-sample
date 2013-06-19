@@ -31,14 +31,14 @@ twilio-sample
 This is the address where your app should be avalaible (somethink like http://test.twiliofaces.org/sample/twiml/first.twiml). 
 (yes the extension is .twiml --> twiliofaces in the web fragment declare a Faces Servlet to parse .tmiml files like jsf files,
 and enable a filter to trace the xml produced and you can receive in cdi events. 
-you will see in the follows like @observes that events).
+you will see in the follows like @observes these events).
 Twilio retrieve and execute the TwiML via the selected HTTP method when this number receives a phone call 
 (You can receive the twilio parameters on POST or GET - in jsf is the same!).
 This is the entry point in your sample twilio app. 
 
 *Status Callback URL*
-When you use twiliofaces, that address is automatically exposed at that url:  http://xxx.org/app-name/notification.jsf
-Twiliofaces contains a web-fragment wich declare that jsf page. Twilio make a request to this URL when a call to 
+When you use twiliofaces, this is automatically exposed at that url:  http://xxx.org/app-name/notification.jsf
+Twiliofaces contains a web-fragment which declare that jsf page. Twilio make a request to this URL when a call to 
 your phone number is completed.
 Twiliofaces use that jsf page to register the end of call (and conseguently to destroy the twilioscoped component linked)
 
@@ -130,9 +130,9 @@ Below a minimal web.xml, where you should declare you twilio secret parameters:
 </web-app>
 
 ----
-In case of you use twilio api only to receive phone calls, you can't declare that parameters. But if you want start a call
-from your app, you must have that. In this tutorial we don't use this capability, ut it's important knows where store 
-that reserved informations. 
+In case of you use twilio api only to receive phone calls, you can't declare these parameters. But if you want start a call
+from your app, you must have those. In this tutorial we don't use this capability, but it's important knows where store 
+these reserved informations. 
 
 Below an almost empty beans.xml (to start CDI container):
 
@@ -227,7 +227,7 @@ public class LogController
 
 ----
 
-The most important component in the Quiz app is the QuizController wich born after tha twilio call our server and die 
+The most important component in the Quiz app is the QuizController which born after tha twilio call our server and die 
 after receiving a notification. We use twilioScope to follows the call in all steps of quiz:
 - initial identification of client
 - ask a question
@@ -466,7 +466,7 @@ the third.twiml code:
 == Final considerations
 
 This app is very simple, but in the same way you can create complex interactions.
-We used 3 twiml pages, but we could use a simple page, wich generate xml code using some simple hacks:
+We used 3 twiml pages, but we could use a simple page, which generate xml code using some simple hacks:
 
 - in twilioscoped component we could register the phase (first, second, third) and in the only page, we could rendered
 the block of code using somethig like that:
