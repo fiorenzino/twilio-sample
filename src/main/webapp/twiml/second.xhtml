@@ -4,7 +4,7 @@
 	xmlns:tf="http://twiliofaces.org/twiliofaces">
 	<f:event type="preRenderView" listener="#{quizController.second}" />
 	<tf:response>
-		<tf:gather action="/third.twiml" method="POST">
+		<tf:gather action="third.twiml" method="POST" numDigits="1">
 			<tf:say value="#{quizController.question}" voice="woman"
 				language="en" />
 		</tf:gather>

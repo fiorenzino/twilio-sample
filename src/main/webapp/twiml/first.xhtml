@@ -4,8 +4,8 @@
 	xmlns:tf="http://twiliofaces.org/twiliofaces">
 	<f:event type="preRenderView" listener="#{quizController.first}" />
 	<tf:response>
-		<tf:say value="#{quizController.intro}" voice="woman" language="it" />
-		<tf:record action="../second.twiml" method="POST" maxLength="20" />
+		<tf:say value="#{quizController.intro}" voice="woman" language="en" />
+		<tf:record action="second.twiml" method="POST" maxLength="20" />
 		<tf:say value="#{quizController.hangoutMessage}" />
 	</tf:response>
 </f:view>

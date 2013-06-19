@@ -55,12 +55,14 @@ public class QuizController implements Serializable
    public void second()
    {
       count++;
+      logger.info("CALL SID: " + callSid + " count: " + count);
       logger.info("recording url: " + recordingUrl);
    }
 
    public void third()
    {
       count++;
+      logger.info("CALL SID: " + callSid + " count: " + count);
       logger.info("digits: " + digits);
    }
 
