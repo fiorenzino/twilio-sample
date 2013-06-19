@@ -522,10 +522,8 @@ the block of code using somethig like that:
 
 ----
  
- 
- What are you thinking about? *ISN'T REALLY POWERFULL TWILIOFACES!!!*
- 
- == TWILIOFACES = TWILIO + JAVA EE!!
+What are you thinking about? *ISN'T REALLY POWERFUL 'TWILIO FACES'!!!*
+Remember: *TWILIOFACES is the flavour of TWILIO with the power of JAVA EE!!*
  
  
  
