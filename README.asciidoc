@@ -394,11 +394,15 @@ The flow of quiz is that:
 - read the final status of the caller (winning or losing)
 
 For that flux, we need twilio verbs:
+
 - say to read some text (text 2 speach)
 - record to record the voice of our caller
 - gather to store the answer to our question
 - play to listen the recorder voice of caller
 
+Below the three twilio pages. In all page we call QuizController to register the value of twilio parameters.
+
+the first.xhtml code:
 ----
 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -417,7 +421,7 @@ For that flux, we need twilio verbs:
 
 ----
 
-secondo.twmil
+the second.twmil code:
 
 ----
 
@@ -438,7 +442,7 @@ secondo.twmil
 
 ----
 
-third.twiml
+the third.twiml code:
 
 ----
 
@@ -459,4 +463,14 @@ third.twiml
 
 ----
 
+== Final considerations
 
+This app is very simple, but in the same way you can create complex interactions.
+We used 3 twiml pages, but we could use a simple page, wich generate xml code using some simple hacks:
+
+- in twilioscoped component we could register the phase (first, second, third) and in the only page, we could rendered
+the block of code using somethig like that:
+
+----
+
+----
