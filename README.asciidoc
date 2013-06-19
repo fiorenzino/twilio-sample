@@ -503,9 +503,10 @@ the block of code using somethig like that:
 </f:view>
 
 ----
+ 
  where third.xhtml should be something like:
  
- ----
+----
  
  <ui:composition xmlns="http://www.w3c.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -519,9 +520,10 @@ the block of code using somethig like that:
 	</tf:response>
 </ui:composition>
 
- ----
+----
  
- *ISN'T REALLY POWERFULL!!!*
+ 
+ What are you thinking about? *ISN'T REALLY POWERFULL TWILIOFACES!!!*
  
  == TWILIOFACES = TWILIO + JAVA EE!!
  
