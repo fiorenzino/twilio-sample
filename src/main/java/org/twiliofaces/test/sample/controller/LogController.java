@@ -1,4 +1,18 @@
+/*
+ * Copyright 2013 twiliofaces.org.
+ *
+ * Licensed under the Eclipse Public License version 1.0, available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
+/*
+ * Copyright 2013 twiliofaces.org.
+ *
+ * Licensed under the Eclipse Public License version 1.0, available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.twiliofaces.test.sample.controller;
+
+import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
@@ -14,18 +28,20 @@ import org.twiliofaces.request.pojo.TwilioRequestMap;
 public class LogController
 {
 
+   Logger logger = Logger.getLogger(LogController.class.getName());
+
    @Inject
    @TwilioRequestParams
    TwilioRequestMap twilioRequestMap;
 
    public void creditPayment(@Observes TwimlEvent event)
    {
-      System.out.println(event.getTwimlFormatted());
+      logger.info(event.getTwimlFormatted());
 
    }
 
    public void log()
    {
-      System.out.println(twilioRequestMap.toString());
+      logger.info(twilioRequestMap.toString());
    }
 }
