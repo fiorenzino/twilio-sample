@@ -364,9 +364,40 @@ public class QuizController implements Serializable
 ----
 
 
-4) we need to create 3 twiml page:
+== some jsf pages to generate twiml code
 
-first.twiml
+We need 3 twiml pages to generate all complete flux:
+
+- first.twiml
+- second.twiml
+- third.twiml
+
+The extension twiml is parsed from Faces Servlet declared on web-fragment of twiliofaces. We use a facelets tags to 
+produce xml code, using jsf tags. Generally you use jsf technology to create your html pages, but with twilifaces 
+you can create yuor twiml on the same way are you using to work in your java ee apps.
+Some simple rules:
+
+- declare an xml entry point
+- use f:view tag to declare the xml namespaces of jsf tags and twilio tags
+- respect twiml rules to neste the twiml verbs (if you want evaluate the correctness of your code you must use the some 
+validator against XSD http://www.twiliofaces.org/howto.html#test)
+- all actions in twiml code can use relative path, twilio resolve in right way
+- use jsf f:event of type preRenderView to call your controllers
+
+In our Quiz app, we have a first twiml page to request the name of the caller, record the user pronunciation, 
+and associate these information for all twilio session.
+The flow of quiz is that: 
+
+- associate at numer of caller (inject using @From parameter)
+- enrich the number information with a recorded mp3
+- read the answer to our question and evaluate that
+- read the final status of the caller (winning or losing)
+
+For that flux, we need twilio verbs:
+- say to read some text (text 2 speach)
+- record to record the voice of our caller
+- gather to store the answer to our question
+- play to listen the recorder voice of caller
 
 ----
 
