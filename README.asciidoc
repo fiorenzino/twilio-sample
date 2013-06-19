@@ -1,37 +1,55 @@
 twilio-sample
 =============
 
-come iniziare:
+== quick start with twiliofaces
 
-1) what do you could know after reading that:
-  - how to read the twiml generated from Faces Servlet (using cdi events)
-  - how to generate twiml using jsf tags 
-  - how to use a CDI component with @twilioscope
-2) requisites:
- - have a public web server (for example: openshift jboss7)
- - have a twilio number (also free account it's sufficent)
-  [remember to copy from twilio dashboard your ACCOUNT SID, your AUTH TOKEN, your TWILIO NUMBER]
-3) purpose of this tutorial:
- - we want generate a simple quiz developed in 3 step:
- 	- first step  - the caller must be declare his name and surname
- 	- second step - the user should answer a question
- 	- third step - we read if the user chosed a correct response
+. what do you could know after reading that:
+- how to read the twiml generated from Faces Servlet (using cdi events)
+- how to generate twiml using jsf tags 
+- how to use a CDI component with @twilioscope
+  
+. prerequisites:
+
+- have a public web server (for example: openshift jboss7)
+- have a twilio number (also free account it's sufficent)
+[remember to copy from twilio dashboard your ACCOUNT SID, your AUTH TOKEN, your TWILIO NUMBER]
+  
+. purpose of this tutorial:
+ 
+- we want generate a simple quiz developed in 3 step:
+- first step  - the caller must be declare his name and surname
+- second step - the user should answer a question
+- third step - we read if the user chosed a correct response
 
 = declare on twilio dashboard
 
-You must go on the twilio dashboard and you must declare:
-Voice Request URL --> the address where your app should be avalaible, for example:
-	http://test.twiliofaces.org/sample/twiml/first.twiml  (yes the extension is .twiml --> twiliofaces in the web fragment declare a Faces Servlet to parse .tmiml files like jsf files, and enable a filter to trace the xml produced and you can receive in cdi events. you will see in the follows like @observes that events).
-	Twilio retrieve and execute the TwiML via the selected HTTP method when this number receives a phone call (You can receive the twilio parameters on POST or GET - in jsf is the same!).
-	This is the entry point in your sample twilio app. 
+. You must go on the twilio dashboard and you must declare:
+- *Voice Request URL* 
+- *Status Callback URL*
 
-Status Callback URL -->  the address where your app expose an hidden link content in twiliofaces (web-fragment): http://test.twiliofaces.org/sample/notification.jsf
-	Twilio make a request to this URL when a call to this phone number is completed.
-	Twiliofaces use that jsf page to register the end of call (and conseguently to destroy the twilioscoped component linked)
+*Voice Request URL* 
+This is the address where your app should be avalaible (somethink like http://test.twiliofaces.org/sample/twiml/first.twiml). 
+(yes the extension is .twiml --> twiliofaces in the web fragment declare a Faces Servlet to parse .tmiml files like jsf files,
+and enable a filter to trace the xml produced and you can receive in cdi events. 
+you will see in the follows like @observes that events).
+Twilio retrieve and execute the TwiML via the selected HTTP method when this number receives a phone call 
+(You can receive the twilio parameters on POST or GET - in jsf is the same!).
+This is the entry point in your sample twilio app. 
+
+*Status Callback URL*
+When you use twiliofaces, that address is automatically exposed at that url:  http://xxx.org/app-name/notification.jsf
+Twiliofaces contains a web-fragment wich declare that jsf page. Twilio make a request to this URL when a call to 
+your phone number is completed.
+Twiliofaces use that jsf page to register the end of call (and conseguently to destroy the twilioscoped component linked)
 
 = create a maven web project
 
-In the follows a minimal pom.xml
+To use twiliofaces you need to declare some dependencies:
+
+. twilio sdk
+. javaee-api
+
+Below a minimal pom.xml:
 
 ----
 
@@ -73,7 +91,7 @@ In the follows a minimal pom.xml
 
 a minimal web.xml:
 
----
+----
 
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
@@ -103,11 +121,11 @@ a minimal web.xml:
 </web-app>
 
 
----
+----
 
 a beans.xml (to start CDI container):
 
----
+----
 
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -117,7 +135,7 @@ a beans.xml (to start CDI container):
 </beans>
 
 
----
+----
 
 
 == some cdi controller to play with our quiz
@@ -175,12 +193,12 @@ public class LogController
 }
 
 
----
+----
 
 In this controller we also want trace all parameters that twilio send tou our app. In Twiliofaces we can inject a TwilioRequestMap, for example we will see:
 AccountSid, ApiVersion, ApplicationSid, CallSid, CallStatus, Caller, Direction, From, PhoneNumber 
 
----
+----
 
 /*
  * Copyright 2013 twiliofaces.org.
@@ -307,14 +325,14 @@ public class QuizController implements Serializable
 }
 
 
----
+----
 
 
 4) we need to create 3 twiml page:
 
 first.twiml
 
----
+----
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ~ Copyright 2013 twiliofaces.org. ~ ~ Licensed under the Eclipse Public 
@@ -330,11 +348,11 @@ first.twiml
 	</tf:response>
 </f:view>
 
----
+----
 
 secondo.twmil
 
----
+----
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ~ Copyright 2013 twiliofaces.org. ~ ~ Licensed under the Eclipse Public 
@@ -351,11 +369,11 @@ secondo.twmil
 	</tf:response>
 </f:view>
 
----
+----
 
 third.twiml
 
----
+----
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ~ Copyright 2013 twiliofaces.org. ~ ~ Licensed under the Eclipse Public 
@@ -372,6 +390,6 @@ third.twiml
 	</tf:response>
 </f:view>
 
----
+----
 
 
