@@ -528,7 +528,9 @@ that generates XML code for the current quiz phase, by using some simple hacks:
 
 ----
  
- where third.xhtml should be something like:
+ 
+where third.xhtml should be something like:
+ 
  
 ----
  
